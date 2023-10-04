@@ -4,8 +4,13 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.Command;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.Locale;
 import java.util.Scanner;
+import java.util.Vector;
 
 
 @Command(name = "CLI",sortOptions = false,headerHeading = "%nUsage of this app:%n%n", footer = "%nCopyright(c) 2023 HEIG-VD - Esteban Lopez",
@@ -38,14 +43,46 @@ public class CLI implements Runnable{
         System.out.println("test");
 
         try {
+            Files.deleteIfExists(outputFile.toPath());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
             Scanner scanner = new Scanner(inputFile);
+            FileWriter writer = new FileWriter(outputFile);
+
+            Vector<Word> dictionnary = new Vector<Word>();
+
+
+
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
 
-                System.out.println(line);
-            }
+                String[]wordsOfLine = line.split(" ");
 
-        } catch (FileNotFoundException e) {
+                for(String word : wordsOfLine){
+                    Word newWord = new Word(word.substring(0,1).toUpperCase()+word.substring(1));
+
+                    if(dictionnary.equals(newWord))
+                    {
+                        System.out.println("got it");
+
+                    }
+                    else
+                    {
+                        System.out.println("new");
+
+                        dictionnary.add(newWord);
+                    }
+
+                    writer.write(newWord.getText()+" ");
+
+                }
+            }
+            writer.close();
+
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
