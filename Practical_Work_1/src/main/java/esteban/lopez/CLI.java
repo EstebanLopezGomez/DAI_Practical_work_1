@@ -17,6 +17,9 @@ import java.util.Vector;
         descriptionHeading = "%nDescription : %n",optionListHeading = "%nOptions : %n",commandListHeading = "%nCommands : %n",description = "Modifies the content of a file and saves it on an output file")
 
 public class CLI implements Runnable{
+
+    String specialChars = "!@#$%^&*(),.";
+
     @Option(names = {"-i","--inputFile"},required = true, description = "Input file where the text will be retrieved")
     File inputFile;
 
@@ -52,34 +55,35 @@ public class CLI implements Runnable{
             Scanner scanner = new Scanner(inputFile);
             FileWriter writer = new FileWriter(outputFile);
 
-            Vector<Word> dictionnary = new Vector<Word>();
+            Dictionnary dictionnary = new Dictionnary();
+            Dictionnary specialCharDictionnary = new Dictionnary();
 
 
 
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
-
+                line = line.replaceAll("[^a-zA-Z]"," ");
                 String[]wordsOfLine = line.split(" ");
 
                 for(String word : wordsOfLine){
-                    Word newWord = new Word(word.substring(0,1).toUpperCase()+word.substring(1));
+                    if(word.length()>1) {
 
-                    if(dictionnary.equals(newWord))
-                    {
-                        System.out.println("got it");
+                        Word newWord = new Word(word.substring(0, 1).toUpperCase() + word.substring(1));
+
+                        if (specialChars.contains(word)) {
+                            specialCharDictionnary.addToDictionnary(newWord);
+                        } else {
+                            dictionnary.addToDictionnary(newWord);
+                        }
+
 
                     }
-                    else
-                    {
-                        System.out.println("new");
-
-                        dictionnary.add(newWord);
-                    }
-
-                    writer.write(newWord.getText()+" ");
-
                 }
+
+
             }
+
+            writer.write(dictionnary.showDictionnary());
             writer.close();
 
         } catch (IOException e) {
