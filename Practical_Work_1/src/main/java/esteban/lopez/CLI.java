@@ -47,8 +47,6 @@ public class CLI implements Runnable{
     @Option(names = { "-h", "--help" }, usageHelp = true, description = "display a help message")
     private boolean helpRequested;
 
-
-
     @Override
     public void run(){
         System.out.println("Début de la lecture, veuillez patienter...\n");
@@ -65,32 +63,41 @@ public class CLI implements Runnable{
 
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(inputFile),Charset.forName(inputEncoding)));
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile),Charset.forName(outputEncoding)));
-
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), Charset.forName(outputEncoding)));
 
             Dictionnary dictionnary = new Dictionnary();
             Dictionnary specialCharDictionnary = new Dictionnary();
 
-
+            StringBuilder resultToOutput= new StringBuilder();
             String line;
             while ((line= reader.readLine())!= null){
-                line = line.replaceAll("[^a-zA-Z]"," ");
+                //line = line.replaceAll("[^a-zA-Z]"," ");
                 String[]wordsOfLine = line.split(" ");
 
                 for(String word : wordsOfLine){
-                    if(word.length()>1) {
+                    if(!word.isEmpty()) {
 
-                        Word newWord = new Word(word.substring(0, 1).toUpperCase() + word.substring(1));
+                        if(dictionnaryOption)
+                        {
+                            Word newWord = new Word(word.substring(0, 1).toUpperCase() + word.substring(1));
 
-                        if (specialChars.contains(word)) {
-                            specialCharDictionnary.addToDictionnary(newWord);
-                        } else {
-                            dictionnary.addToDictionnary(newWord);
+
+                                dictionnary.addToDictionnary(newWord);
+
+                        }
+                        else if(toUppercase)
+                        {
+                            String wordUppercase = word.toUpperCase();
+                            resultToOutput.append(wordUppercase).append(" ");
                         }
                     }
                 }
             }
-            writer.write(dictionnary.showDictionnary());
+
+            if(dictionnaryOption){
+                resultToOutput = new StringBuilder(dictionnary.showDictionnary());
+            }
+            writer.write(resultToOutput.toString());
             writer.close();
 
         } catch (IOException e) {
@@ -98,12 +105,6 @@ public class CLI implements Runnable{
         }
 
         System.out.println("Fichier lu et converti");
-
-
     }
-
-    public void putToUppercase(){
-    }
-
 
 }
