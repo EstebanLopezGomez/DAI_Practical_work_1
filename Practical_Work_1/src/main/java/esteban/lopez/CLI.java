@@ -25,10 +25,6 @@ public class CLI implements Runnable{
     @Option(names = {"-ie","--inputEnconding"},defaultValue = "UTF-8", description = "Sets the encoding for the input file. By default : ${DEFAULT-VALUE}")
     private String inputEncoding;
 
-    //@Option(names = {"-ie","-inputFileEncoding"},defaultValue = "UTF-8", description = "Defines the encoding of the input file, default : ")
-
-
-
     @Option(names = {"-o","--outputFile"}, required = true, defaultValue = "output.txt",description = "Output file where the modified text will be saved. By default : ${DEFAULT_VALUE}")
     File outputFile;
 
@@ -81,14 +77,17 @@ public class CLI implements Runnable{
                         {
                             Word newWord = new Word(word.substring(0, 1).toUpperCase() + word.substring(1));
 
-
-                                dictionnary.addToDictionnary(newWord);
+                            dictionnary.addToDictionnary(newWord);
 
                         }
                         else if(toUppercase)
                         {
                             String wordUppercase = word.toUpperCase();
                             resultToOutput.append(wordUppercase).append(" ");
+                        }
+                        else if(toLowercase){
+                            String wordLowercase = word.toLowerCase();
+                            resultToOutput.append(wordLowercase).append(" ");
                         }
                     }
                 }
