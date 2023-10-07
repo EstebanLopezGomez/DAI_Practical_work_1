@@ -1,17 +1,5 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in congue @#$% ipsum, a aliquet ipsum dolor sit amet. Nullam auctor auctor sit amet, congue congue adipiscing adipiscing. Etiam elementum #$%! amet euismod euismod.
+Lorsqu'on écrit un texte avec un ordinateur, les caractères, à l'instar des autres informations manipulées par la machine, sont représentés par des nombres. Historiquement le premier standard est ASCII qui permet de représenter 128 caractères : les lettres minuscules, majuscules, les chiffres, l'espace, des symboles comme le signe « % », et des caractères spéciaux comme le saut de ligne ou la tabulation.
 
-Fusce vitae odio odio, euismod auctor auctor. Vivamus vivamus vulputate vulputate, %$#@ dapibus sapien sapien eleifend eleifend. Sed eu eu risus risus, placerat placerat commodo commodo. Curabitur suscipit suscipit neque neque sit sit amet.
+ASCII est un standard américain qui n'inclut pas les caractères d'autres alphabets. Il n'y a pas les caractères accentués européens, ni les caractères arabes, ni les idéogrammes asiatiques par exemple.
 
-Nunc ultrices ultrices justo justo ut ut semper semper. Nulla facilisi facilisi. Sed in in velit velit, ac ac luctus luctus quam quam. Nulla tincidunt tincidunt ipsum ipsum eu eu ultrices ultrices.
-
-Duis quis quis odio odio, a cursus cursus mauris mauris. Etiam eget eget odio odio lorem lorem posuere posuere placerat placerat. Suspendisse vitae vitae justo justo nulla nulla vestibulum vestibulum feugiat feugiat non non metus metus.
-
-Sed in in amet amet lectus lectus tincidunt tincidunt blandit blandit. Etiam fermentum fermentum massa massa a a euismod euismod. Vestibulum vehicula vehicula justo justo vel vel interdum interdum. Duis in in libero libero.
-
-Pellentesque eget eget sem sem, a lacinia lacinia nulla nulla. In in congue congue libero libero, eget eget ultrices ultrices mauris mauris. Sed sem sem arcu arcu vel vel interdum interdum eu eu turpis turpis.
-
-Mauris quis quis felis felis, et et auctor auctor ipsum ipsum. Sed ac ac sapien sapien, vitae vitae placerat placerat lorem lorem. Phasellus eu eu ante ante, a tincidunt tincidunt nulla nulla.
-
-Vestibulum id id odio odio vitae vitae lorem lorem aliquam aliquam. Nulla ut ut sem sem sed sed purus purus facilisis facilisis ullamcorper ullamcorper ac ac eu eu lorem lorem. Duis elementum elementum, velit velit eu eu dignissim dignissim.
-
-Sed bibendum bibendum nisi nisi a a magna magna congue congue. Aenean eget eget consequat consequat velit velit placerat placerat quis quis in in turpis turpis. Ut non non velit velit ut ut vehicula vehicula.
+Le standard Unicode, largement utilisé aujourd'hui, permet en théorie de représenter plus de 4 milliards de caractères. En pratique, il comporte aujourd'hui plus de 130.000 caractères qui permettent de traiter la quasi-totalité des langues connues.

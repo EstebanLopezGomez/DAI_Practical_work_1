@@ -2,10 +2,9 @@ package esteban.lopez;
 
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Command;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Locale;
@@ -23,12 +22,18 @@ public class CLI implements Runnable{
     @Option(names = {"-i","--inputFile"},required = true, description = "Input file where the text will be retrieved")
     File inputFile;
 
+    @Option(names = {"-ie","--inputEnconding"},defaultValue = "UTF-8", description = "Sets the encoding for the input file. By default : ${DEFAULT-VALUE}")
+    private String inputEncoding;
+
     //@Option(names = {"-ie","-inputFileEncoding"},defaultValue = "UTF-8", description = "Defines the encoding of the input file, default : ")
 
 
 
-    @Option(names = {"-o","--outputFile"}, required = true, defaultValue = "output.txt",description = "Output file where the modified text will be saved. Default  value = {DEFAULT_VALUE}")
+    @Option(names = {"-o","--outputFile"}, required = true, defaultValue = "output.txt",description = "Output file where the modified text will be saved. By default : ${DEFAULT_VALUE}")
     File outputFile;
+
+    @Option(names = {"-oe","--outputEnconding"},defaultValue = "UTF-8", description = "Sets the encoding for the output file. By default : ${DEFAULT-VALUE}")
+    private String outputEncoding;
 
     @Option(names = "uppercase", description = "Sets the text on the input file to Uppercase and saves it on the output file")
     private boolean toUppercase;
@@ -36,64 +41,70 @@ public class CLI implements Runnable{
     @Option(names = "lowercase", description = "Sets the text on the input file to Lowercase and saves it on the output file")
     private boolean toLowercase;
 
+    @Option(names = "dictionnary", description = "Reads the input file and creates a dictionnary of it's words with the number of occurences of each of them")
+    private boolean dictionnaryOption;
+
     @Option(names = { "-h", "--help" }, usageHelp = true, description = "display a help message")
     private boolean helpRequested;
 
-
-
     @Override
     public void run(){
-        System.out.println("test");
+        System.out.println("Début de la lecture, veuillez patienter...\n");
 
         try {
-            Files.deleteIfExists(outputFile.toPath());
+            if(!outputFile.createNewFile()){
+                Files.deleteIfExists(outputFile.toPath());
+
+            }
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         try {
-            Scanner scanner = new Scanner(inputFile);
-            FileWriter writer = new FileWriter(outputFile);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(inputFile),Charset.forName(inputEncoding)));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), Charset.forName(outputEncoding)));
 
             Dictionnary dictionnary = new Dictionnary();
             Dictionnary specialCharDictionnary = new Dictionnary();
 
-
-
-            while (scanner.hasNextLine()){
-                String line = scanner.nextLine();
-                line = line.replaceAll("[^a-zA-Z]"," ");
+            StringBuilder resultToOutput= new StringBuilder();
+            String line;
+            while ((line= reader.readLine())!= null){
+                //line = line.replaceAll("[^a-zA-Z]"," ");
                 String[]wordsOfLine = line.split(" ");
 
                 for(String word : wordsOfLine){
-                    if(word.length()>1) {
+                    if(!word.isEmpty()) {
 
-                        Word newWord = new Word(word.substring(0, 1).toUpperCase() + word.substring(1));
+                        if(dictionnaryOption)
+                        {
+                            Word newWord = new Word(word.substring(0, 1).toUpperCase() + word.substring(1));
 
-                        if (specialChars.contains(word)) {
-                            specialCharDictionnary.addToDictionnary(newWord);
-                        } else {
-                            dictionnary.addToDictionnary(newWord);
+
+                                dictionnary.addToDictionnary(newWord);
+
                         }
-
-
+                        else if(toUppercase)
+                        {
+                            String wordUppercase = word.toUpperCase();
+                            resultToOutput.append(wordUppercase).append(" ");
+                        }
                     }
                 }
-
-
             }
 
-            writer.write(dictionnary.showDictionnary());
+            if(dictionnaryOption){
+                resultToOutput = new StringBuilder(dictionnary.showDictionnary());
+            }
+            writer.write(resultToOutput.toString());
             writer.close();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
+        System.out.println("Fichier lu et converti");
     }
-
-    public void putToUppercase(){
-    }
-
 
 }
