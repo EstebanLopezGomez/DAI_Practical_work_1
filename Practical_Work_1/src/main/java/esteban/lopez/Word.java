@@ -20,7 +20,7 @@ public class Word {
     public void addOccurence(){occurences++;}
 
     public String show(){
-        return ("Mot : "+text+" - avec  : "+occurences + " occurences \n");
+        return ("Mot : "+text+" - avec  : "+occurences + " occurrences \n");
     }
 
 
