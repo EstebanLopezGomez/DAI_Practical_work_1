@@ -23,10 +23,10 @@ The CLI comes with a help option implemented but here's more information about t
 * -h / --help : Shows the help text for the CLI
  
 ## Exemples
-* * Dictionnary sorted by number of occurences : `java -jar target/Practical_Work_1-1.0-SNAPSHOT.jar --inputFile=D:\Documents\HEIG\SEM3\DAI\Projects\Labos\DAI_Practical_work_1\Practical_Work_1\src\test\les_miserables.txt --outputFile=D:\Documents\HEIG\SEM3\DAI\Projects\Labos\DAI_Practical_work_1\Practical_Work_1\src\test\les_miserables_OUTPUT.txt dictionary -ds=Occurrences`
+* Dictionnary sorted by number of occurences : `java -jar target/Practical_Work_1-1.0-SNAPSHOT.jar --inputFile=D:\Documents\HEIG\SEM3\DAI\Projects\Labos\DAI_Practical_work_1\Practical_Work_1\src\test\les_miserables.txt --outputFile=D:\Documents\HEIG\SEM3\DAI\Projects\Labos\DAI_Practical_work_1\Practical_Work_1\src\test\les_miserables_OUTPUT.txt dictionary -ds=Occurrences`
   * Result file : [les_miserables_Occurrences.txt](https://github.com/EstebanLopezGomez/DAI_Practical_work_1/blob/main/Practical_Work_1/src/test/les_miserables_OUTPUT.txt) .
 
-* * Dictionnary sorted alphabetically : `java -jar target/Practical_Work_1-1.0-SNAPSHOT.jar --inputFile=D:\Documents\HEIG\SEM3\DAI\Projects\Labos\DAI_Practical_work_1\Practical_Work_1\src\test\les_miserables.txt --outputFile=D:\Documents\HEIG\SEM3\DAI\Projects\Labos\DAI_Practical_work_1\Practical_Work_1\src\test\les_miserables_Alphabetically_OUTPUT.txt dictionary -ds=Alphabetical`
+* Dictionnary sorted alphabetically : `java -jar target/Practical_Work_1-1.0-SNAPSHOT.jar --inputFile=D:\Documents\HEIG\SEM3\DAI\Projects\Labos\DAI_Practical_work_1\Practical_Work_1\src\test\les_miserables.txt --outputFile=D:\Documents\HEIG\SEM3\DAI\Projects\Labos\DAI_Practical_work_1\Practical_Work_1\src\test\les_miserables_Alphabetically_OUTPUT.txt dictionary -ds=Alphabetical`
   * Result file : [les_miserables_Alphabetical.txt](https://github.com/EstebanLopezGomez/DAI_Practical_work_1/blob/main/Practical_Work_1/src/test/les_miserables_Alphabetically_OUTPUT.txt) .
   
 * File to uppercase with bad output encoding (US-ASCII) : `java -jar target/Practical_Work_1-1.0-SNAPSHOT.jar --inputFile=D:\Documents\HEIG\SEM3\DAI\Projects\Labos\DAI_Practical_work_1\Practical_Work_1\src\test\test_encoding.txt --outputFile=D:\Documents\HEIG\SEM3\DAI\Projects\Labos\DAI_Practical_work_1\Practical_Work_1\src\test\bad_econding_OUTPUT.txt -oe=US-ASCII uppercase`
