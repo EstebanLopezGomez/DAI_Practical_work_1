@@ -1,0 +1,1 @@
+Test for special chars é à ñ Ƒ Θ
