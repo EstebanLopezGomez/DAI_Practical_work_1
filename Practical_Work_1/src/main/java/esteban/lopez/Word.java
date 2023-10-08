@@ -19,8 +19,8 @@ public class Word {
 
     public void addOccurence(){occurences++;}
 
-    public void show(){
-        System.out.println("text : "+text+" - Occurences : "+occurences);
+    public String show(){
+        return ("Mot : "+text+" - avec  : "+occurences + " occurences \n");
     }
 
 
