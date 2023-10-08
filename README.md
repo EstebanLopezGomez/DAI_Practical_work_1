@@ -32,3 +32,6 @@ The CLI comes with a help option implemented but here's more information about t
 * File to uppercase with bad output encoding (US-ASCII) : `java -jar target/Practical_Work_1-1.0-SNAPSHOT.jar --inputFile=D:\Documents\HEIG\SEM3\DAI\Projects\Labos\DAI_Practical_work_1\Practical_Work_1\src\test\test_encoding.txt --outputFile=D:\Documents\HEIG\SEM3\DAI\Projects\Labos\DAI_Practical_work_1\Practical_Work_1\src\test\bad_econding_OUTPUT.txt -oe=US-ASCII uppercase`
   * Result file : [bad_encoding_OUTPUT.txt](https://github.com/EstebanLopezGomez/DAI_Practical_work_1/blob/main/Practical_Work_1/src/test/bad_econding_OUTPUT.txt) .
   * Same but with good encoding (UTF-8) : [good_encoding_OUTPUT.txt](https://github.com/EstebanLopezGomez/DAI_Practical_work_1/blob/main/Practical_Work_1/src/test/good_econding_OUTPUT.txt) .
+ 
+## More information
+There's no git Ignore file because there's no need for it for this project (output files could have been added to git ignore but are necessary for the README).
